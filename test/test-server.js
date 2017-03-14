@@ -142,3 +142,80 @@ describe('Shopping List', function() {
       });
   });
 });
+
+describe('Recipes', function() {
+  before(function() {
+    return runServer();
+  });
+
+  after(function() {
+    return closeServer();
+  });
+
+  it('should list items on GET', function() {
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('array');
+        const expectedKeys = ['name', 'ingredients', 'id'];
+        res.body.forEach(function(item) {
+          item.should.be.a('object');
+          item.should.include.keys(expectedKeys);
+        });
+      });
+  });
+
+  it('should add recipe on POST', function() {
+    const testRecipe = {
+      name: 'Spaghetti',
+      ingredients: ['pasta sauce', 'pasta', 'salt']
+    };
+    return chai.request(app)
+      .post('/recipes')
+      .send(testRecipe)
+      .then(function(res) {
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        const expectedKeys = ['id', 'name', 'ingredients'];
+        res.body.should.include.keys(expectedKeys);
+        res.body.should.not.be.null;
+        res.body.should.deep.equal(Object.assign(testRecipe, {id: res.body.id}));
+      });
+  });
+
+  it('should change recipe on PUT', function() {
+    const testChangedRecipe = {
+      name: 'oatmeal',
+      ingredients: ['oats', 'water']
+    };
+    return chai.request(app)
+    .get('/recipes')
+    .then(function(res) {
+      testChangedRecipe.id = res.body[0].id;
+      return chai.request(app)
+        .put(`/recipes/${testChangedRecipe.id}`)
+        .send(testChangedRecipe);
+    })
+    .then(function(res) {
+      res.should.have.status(200);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      res.body.should.deep.equal(testChangedRecipe);
+    });
+  });
+
+  it('should delete items on DELETE', function() {
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res) {
+        return chai.request(app)
+          .delete(`/recipes/${res.body[0].id}`);
+      })
+      .then(function(res) {
+        res.should.have.status(204);
+      });
+  });
+});
