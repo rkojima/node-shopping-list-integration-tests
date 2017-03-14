@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: Gc21+Yt7onuJYwRnwSuUvg7fdBV7ZUHxyW+YXGXSQbUFa3XLkBqdS/QTS6q+2ZxDWd4usTj32YixUJrny/IgZ2J7sDLepb/4Aex6FM0YnYLu9Jb7BkJMVsMKllmI21tdZcYHXg+r6xEJXgT0Zw0/u51MiCLp4sUIffNeTrfVSrX8K3DKxWIBUxiMECPA3Pe6JuxXS1Gn1EzqfrDDq9zqC61qy3tz5nGVRSnsJrJLZiOxXlG/msh5wJpIMPJvDM60Zdbj1b3TqcVZ3FBkczY4NOcpxwA/C52woXJ0HgAlrA0TF8HmYCW7oudFF9xrqn4HGxVlpPSDeAXGXDZn1D0biKyqrqjgyFFwDPJg1balhkX1U1f3DQMLMR26/CQIEo+QrbHYzY14OtM64/OtxhPKfdpstc0gHvKUFN2d+ThSZqERqZBKnife08QqjgocDnQPikCOXFximxPpPcfVvN1+LJMC2plfsmiteVddUPvESVyU1/qnEzBwUVqKV2L6vBFaDMoB6npwu+mHXmYAkSR1MTIv3I5886h5FaaUe5k97NTPcQ6AJBP+B9wVCidXOF88aehQ/2qLx96z3OmoxMT3jP41J8L1rPCwEhWcZM+Zdg1ItTYOVA2AS3i18/S2SSynLfxDcn3/MU9yvxER5RbZ9JPhXFte2eKiI+YmfND9cd4=
-  app: https://git.heroku.com/shrouded-beyond-14629.git
+  app: shrouded-beyond-14629
   on:
     repo: rkojima/node-shopping-list-integration-tests
